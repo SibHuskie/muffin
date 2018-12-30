@@ -373,5 +373,395 @@ async def serverinfo(ctx):
             embed.add_field(name="{} IGNORED CHANNELS:".format(ignored_e), value=ing, inline=True)
         await client.edit_message(h, embed=embed)           
            
+# }suicide
+@client.command(pass_context=True)
+async def suicide(ctx):
+    embed = discord.Embed(colour=0xffa3a3)
+    embed.set_footer(text=footer_text)
+    if len(started) == 0:
+        embed.description = "{} The bot is restarting. Please try again in a few seconds.".format(reload_e)
+        await client.say(embed=embed)
+    elif ctx.message.author.id in banned_users:
+        embed.description = "{} You are on the ban list and cannot use this bot.".format(noperms_e)
+        await client.say(embed=embed)
+    elif ctx.message.server.id in banned_servers:
+        embed.description = "{} This server is on the ban list and cannot use this bot.".format(noperms_e)
+        await client.say(embed=embed)
+    else:
+        msgs = ["**{}** tried to commit suicide but failed! Better luck next time I guess.".format(ctx.message.author.name),
+                "**{}** killed themselves after losing all their diamonds on their christian minecraft server.".format(ctx.message.author.name),
+                "**{}** had no internet connection for more than 5 seconds so they commited suicide.".format(ctx.message.author.name),
+                "**{}** felt weird in the middle of the night, but hentaihaven was down so they killed themselves.".format(ctx.message.author.name),
+                "**{}** didn't really have a life, but they still managed to kill themselves.".format(ctx.message.author.name),
+                "**{}** watched boku no pico, few seconds later they jumped off the 7th floor.".format(ctx.message.author.name),
+                "**{}** saw Huskie's face. They instantly commited suicide after that.".format(ctx.message.author.name),
+                "All of **{}**'s memes were stolen. Not having any memes or dreams left, they decided to kill themselves.".format(ctx.message.author.name),
+                "**{}** realized how shitty this server actually is. Leaving it wasn't enough so they commited suicide too.".format(ctx.message.author.name),
+                "**{}** had anxiety for way too long. They couldn't live with it anymore so they took their own life away.".format(ctx.message.author.name),
+                "**{}** was bipolar. That disorder was messing up their life too much so they commited suicide.".format(ctx.message.author.name),
+                "**{}** suffered from depression for years. Not having any hope or motivation left, they commited suicide.".format(ctx.message.author.name),
+                "**{}** was physically abused every day. They thought killing themselves would make things better.".format(ctx.message.author.name),
+                "**{}** was sexually abused. That experience made them take their own life away.".format(ctx.message.author.name),
+                "**{}** lived in war and chaos for a very long time. The day they had enough was the day they killed themselves.".format(ctx.message.author.name),
+                "**{}** was bullied in school, outside, even at home. They couldn't take it anymore so they commited suicide.".format(ctx.message.author.name),
+                "**{}** had a personality disorder that made them take their life away.".format(ctx.message.author.name),
+                "**{}** had an eating disorder. They couldn't eat anything without thorwing up after that so they took their life away.".format(ctx.message.author.name),
+                "**{}** was lonely all their life. Not having any friends or family, they killed themselves without anyone finding out.".format(ctx.message.author.name),
+                "**{}** had a great relationship that started to fall apart. After their partner left them, they became depressed and decided to kill themselves, thinking no one would ever love them again.".format(ctx.message.author.name),
+                "**{}** commited suicide. Too bad there's no one to leave a flower on their grave...".format(ctx.message.author.name),
+                "**{}** killed themselves.".format(ctx.message.author.id)]
+        embed.description = "{} {}".format(suicide_e, random.choice(msgs))
+        await client.say(embed=embed)           
+     
+# }roast <user>
+@client.command(pass_context=True)
+async def roast(ctx, user: discord.Member = None):
+    embed = discord.Embed(colour=0xffa3a3)
+    embed.set_footer(text=footer_text)
+    if len(started) == 0:
+        embed.description = "{} The bot is restarting. Please try again in a few seconds.".format(reload_e)
+        await client.say(embed=embed)
+    elif ctx.message.author.id in banned_users:
+        embed.description = "{} You are on the ban list and cannot use this bot.".format(noperms_e)
+        await client.say(embed=embed)
+    elif ctx.message.server.id in banned_servers:
+        embed.description = "{} This server is on the ban list and cannot use this bot.".format(noperms_e)
+        await client.say(embed=embed)
+    else:
+        if user == None:
+            embed.description = "{} Please mention the user you want to roast.".format(error_e)
+            await client.say(embed=embed)
+        else:
+            if user.id == client.user.id:
+                user = ctx.message.author
+            else:
+                user = user
+            msgs = ["Why would I bother roasting someone like **{}** when the mirror does it every morning?".format(user.name),
+                    "We all hate you, **{}**. Just not quite enough to think about you.".format(user.name),
+                    "**{}** don't play hard to get when you are hard to want.".format(user.name),
+                    "God wasted a good asshole when he put teeth in your mouth, **{}**.".format(user.name),
+                    "I can't even call **{}** ugly. Nature has beaten me to it.".format(user.name),
+                    "I can't roast **{}**. I simply can't imagine the pain they go thru with that face.".format(user.name),
+                    "**{}**, I would call you a cunt, but you lack the warmth or the depth.".format(user.name),
+                    "**{}**, you remind me of Huskie. Get out of here!".format(user.name),
+                    "**{}**'s are trash.".format(user.name),
+                    "**{}**, you're a great shower when you speak.".format(user.name),
+                    "I can't breathe when I see you, **{}**. Because I'm suffocating from your bullshit.".format(user.name),
+                    "**{}**, the only way you'll ever get laid is if you crawl up a chicken's ass and wait.".format(user.name),
+                    "**{}**, I just stepped in something that is smarter than you. It smelled better too.".format(user.name),
+                    "**{}**, you're as stupid as your father when he thought he didn't need a condom.".format(user.name),
+                    "**{}**, it's a joke, not a dick. You don't have to take it so hard.".format(user.name),
+                    "**{}**, the only thing that would fuck you is life.".format(user.name),
+                    "What's the difference between 3 dicks and a joke? **{}** can't take a joke.".format(user.name),
+                    "**{}**, you have more dick in your personality than in your pants.".format(user.name),
+                    "**{}**, even your father would be disappointed in your if he stayed.".format(user.name),
+                    "**{}** should put a condom on their head. Cause if they're gonna act like a dick, they might as well dress like one too.".format(user.name),
+                    "**{}**, you were probably birthed out of your mother's ass cause her pussy was too busy.".format(user.name),
+                    "**{}** is such a pussy that fucking them wouldn't be gay.".format(user.name),
+                    "If I wanted to kill myself, I'd climb up your ego and jump into your IQ, **{}**.".format(user.name),
+                    "If laughter is the best medicine, **{}**'s face must be curing the world.".format(user.name),
+                    "**{}**, your family tree is probably a cactus. Cause everyone on it is a prick.".format(user.name),
+                    "**{}** is so ugly that when they look in the mirror, their reflection looks away.".format(user.name),
+                    "**{}**, it's better to let someone think you're stupid than open your mouth and prove it.".format(user.name),
+                    "**{}**, you're so ugly that you have to trick or treat over the phone.".format(user.name),
+                    "**{}**, you're so fat that your school photo was a double picture.".format(user.name),
+                    "**{}** is so stupid that they called me to ask me for my phone number.".format(user.name),
+                    "**{}** is hating themselves too much for me to roast them.".format(user.name),
+                    "**{}** is so fat that Thanos had to snap twice.".format(user.name),
+                    "**{}**'s hair looks like a virginity helmet.".format(user.name)]
+            embed.description = "{} {}".format(roast_e, random.choice(msgs))
+            await client.say(embed=embed)           
+          
+# }eightball <yes or no question>
+@client.command(pass_context=True)
+async def eightball(ctx, *, args = None):
+    embed = discord.Embed(colour=0xffa3a3)
+    embed.set_footer(text=footer_text)
+    if len(started) == 0:
+        embed.description = "{} The bot is restarting. Please try again in a few seconds.".format(reload_e)
+        await client.say(embed=embed)
+    elif ctx.message.author.id in banned_users:
+        embed.description = "{} You are on the ban list and cannot use this bot.".format(noperms_e)
+        await client.say(embed=embed)
+    elif ctx.message.server.id in banned_servers:
+        embed.description = "{} This server is on the ban list and cannot use this bot.".format(noperms_e)
+        await client.say(embed=embed)
+    else:
+        if args == None:
+            embed.description = "{} Please ask me a question.".format(error_e)
+            await client.say(embed=embed)
+        elif len(str(args)) > 200:
+            embed.description = "{} The question cannot be longer than 200 characters.".format(error_e)
+            await client.say(embed=embed)
+        else:
+            embed.description = ":grey_question: `Question`:\n**{}**: {}\n\n:8ball: `Answer`:\n**{}**: {}".format(ctx.message.author.name, args, client.user.name, random.choice(eb))
+            await client.say(embed=embed)
+
+# }pfp
+@client.command(pass_context=True)
+async def pfp(ctx):
+    embed = discord.Embed(colour=0xffa3a3)
+    embed.set_footer(text=footer_text)
+    if len(started) == 0:
+        embed.description = "{} The bot is restarting. Please try again in a few seconds.".format(reload_e)
+        await client.say(embed=embed)
+    elif ctx.message.author.id in banned_users:
+        embed.description = "{} You are on the ban list and cannot use this bot.".format(noperms_e)
+        await client.say(embed=embed)
+    elif ctx.message.server.id in banned_servers:
+        embed.description = "{} This server is on the ban list and cannot use this bot.".format(noperms_e)
+        await client.say(embed=embed)
+    else:
+        try:
+            a = []
+            for i in client.servers:
+                a.append(i.id)
+            server = client.get_server(random.choice(a))
+            b = []
+            for i in server.members:
+                if not i.bot:
+                    b.append(i.id)
+            user = await client.get_user_info(random.choice(b))
+            embed.description = "Here is **{}**'s profile picture, I found it from **{}**.".format(user.name, server.name)
+            embed.set_image(url=user.avatar_url)
+            await client.say(embed=embed)
+        except:
+            embed.description = "{} An unknown error occurred.".format(error_e)
+            await client.say(embed=embed)
+
+# }calculator <math problem>
+@client.command(pass_context=True)
+async def calculator(ctx, *, args = None):
+    embed = discord.Embed(colour=0xffa3a3)
+    embed.set_footer(text=footer_text)
+    if len(started) == 0:
+        embed.description = "{} The bot is restarting. Please try again in a few seconds.".format(reload_e)
+        await client.say(embed=embed)
+    elif ctx.message.author.id in banned_users:
+        embed.description = "{} You are on the ban list and cannot use this bot.".format(noperms_e)
+        await client.say(embed=embed)
+    elif ctx.message.server.id in banned_servers:
+        embed.description = "{} This server is on the ban list and cannot use this bot.".format(noperms_e)
+        await client.say(embed=embed)
+    else:
+        if args == None:
+            embed.description = "{} Please give a simple math problem for me to solve.".format(error_e)
+            await client.say(embed=embed)
+        elif len(str(args)) > 100:
+            embed.description = "{} The math problem cannot be longer than 100 characters.".format(error_e)
+            await client.say(embed=embed)
+        else:
+            try:
+                embed.description = "{} Problem: `{}`\n{} Answer: `{}`".format(calculator_e, args, calculator_e, eval(args))
+                await client.say(embed=embed)
+            except:
+                embed.description = "{} I'm having trouble solving that math problem.".format(error_e)
+                await client.say(embed=embed)
+
+# }battle <user>
+@client.command(pass_context=True)
+async def battle(ctx, user: discord.Member = None):
+    embed = discord.Embed(colour=0xffa3a3)
+    embed.set_footer(text=footer_text)
+    if len(started) == 0:
+        embed.description = "{} The bot is restarting. Please try again in a few seconds.".format(reload_e)
+        await client.say(embed=embed)
+    elif ctx.message.author.id in banned_users:
+        embed.description = "{} You are on the ban list and cannot use this bot.".format(noperms_e)
+        await client.say(embed=embed)
+    elif ctx.message.server.id in banned_servers:
+        embed.description = "{} This server is on the ban list and cannot use this bot.".format(noperms_e)
+        await client.say(embed=embed)
+    else:
+        if user == None:
+            embed.description = "{} Please mention the user you want to battle.".format(error_e)
+            await client.say(embed=embed)
+        elif user.id == ctx.message.author.id:
+            embed.description = "{} You can't battle yourself.".format(error_e)
+            await client.say(embed=embed)
+        else:
+            author = ctx.message.author
+            u_health = []
+            a_health = []
+            rounds = []
+            for i in range(1000):
+                a_health.append(".")
+                u_health.append(".")
+            dmgs = {"punches the opponent! :right_facing_fist:" : random.randint(50, 70),
+                    "kicks the opponent! :boot:" : random.randint(55, 75),
+                    "grabs and throws the opponent on the ground! :raised_hands:" : random.randint(65, 85),
+                    "stabs the opponent! :dagger:" : random.randint(75, 95),
+                    "shoots the opponent! :gun:" : random.randint(90, 110),
+                    "cuts the opponent! :knife:" : random.randint(65, 85),
+                    "hits the opponent with a hammer! :hammer_pick:" : random.randint(75, 95),
+                    "attacks the opponent with dark magic! :skull_crossbones:" : random.randint(280, 300),
+                    "chokes the opponent using chains! :chains:" : random.randint(65, 85),
+                    "casts a spell on the opponent! :sparkles:" : random.randint(155, 175),
+                    "pukes on the opponent! :nauseated_face:" : random.randint(50, 70),
+                    "scares the opponent! :ghost:" : random.randint(50, 70),
+                    "summons a demon to attack the opponent! :smiling_imp:" : random.randint(275, 295),
+                    "calls a rabot to attack the opponent! :robot:" : random.randint(125, 145),
+                    "farts at the opponent! :dash:" : random.randint(50, 70),
+                    "creates a tornado behind the opponent! :cloud_tornado:" : random.randint(130, 150),
+                    "summons a meteor above the opponent! :comet:" : random.randint(210, 230),
+                    "strikes the opponent with lightning! :zap:" : random.randint(200, 220),
+                    "freezes the opponent! :snowflake:" : random.randint(140, 160),
+                    "throws a bomb at the opponent! :bomb:" : random.randint(150, 170),
+                    "drives over the opponent! :red_car:" : random.randint(110, 130),
+                    "stuns the opponent! :dizzy:" : random.randint(60, 80),
+                    "uses ear-rape to deafen the opponent! :ear:" : random.randint(50, 70),
+                    "poisons the opponent! :syringe:" : random.randint(200, 220),
+                    "set the opponent on fire! :fire:" : random.randint(170, 190),
+                    "made the opponent not feel so good! :boom:" : random.randint(225, 245),
+                    "stole the opponent's memes! :100:" : 420,
+                    "deleted the opponent's hentai collections! :no_entry:" : 69,
+                    "banned the opponent's memes! :no_entry_sign:" : random.randint(55, 75),
+                    "pushed the opponent in the toilet! :toilet:" : 1}
+            attacks = ["punches the opponent! :right_facing_fist:",
+                       "kicks the opponent! :boot:",
+                       "grabs and throws the opponent on the ground! :raised_hands:",
+                       "stabs the opponent! :dagger:",
+                       "shoots the opponent! :gun:",
+                       "cuts the opponent! :knife:",
+                       "hits the opponent with a hammer! :hammer_pick:",
+                       "attacks the opponent with dark magic! :skull_crossbones:",
+                       "chokes the opponent using chains! :chains:",
+                       "casts a spell on the opponent! :sparkles:",
+                       "pukes on the opponent! :nauseated_face:",
+                       "scares the opponent! :ghost:",
+                       "summons a demon to attack the opponent! :smiling_imp:",
+                       "calls a rabot to attack the opponent! :robot:",
+                       "farts at the opponent! :dash:",
+                       "creates a tornado behind the opponent! :cloud_tornado:",
+                       "summons a meteor above the opponent! :comet:",
+                       "strikes the opponent with lightning! :zap:",
+                       "freezes the opponent! :snowflake:",
+                       "throws a bomb at the opponent! :bomb:",
+                       "drives over the opponent! :red_car:",
+                       "stuns the opponent! :dizzy:",
+                       "uses ear-rape to deafen the opponent! :ear:",
+                       "poisons the opponent! :syringe:",
+                       "set the opponent on fire! :fire:",
+                       "made the opponent not feel so good! :boom:",
+                       "stole the opponent's memes! :100:",
+                       "deleted the opponent's hentai collections! :no_entry:",
+                       "banned the opponent's memes! :no_entry_sign:",
+                       "pushed the opponent in the toilet! :toilet:"]
+            title = "{} **__`D E A T H    B A T T L E`__** {}\n**{}**\n:vs:\n**{}**".format(battle_e, battle_e, author.name, user.name)
+            s = "**~~`=====`~~**"
+            embed.description = "{}\n{} **HEALTH** {}\n:small_red_triangle_down: **{}**\n:heart: `1000` HP\n\n:small_red_triangle_down: **{}**\n:heart: `1000` HP".format(title, s, s, author.name, user.name)
+            h = await client.say(embed=embed)
+            for i in range(1000):
+                if len(a_health) == 0 or len(u_health) == 0:
+                    await asyncio.sleep(float(5))
+                    if len(a_health) > len(u_health):
+                        embed.description = "{}\n{} **BATTLE OVER** {}\n:crown: WINNER: **{}**\n:heart: `{}` HP\n\n:poop: LOSER: **{}**\n:heart: `0` HP".format(title, s, s, author.name, len(a_health), user.name)
+                    elif len(a_health) < len(u_health):
+                        embed.description = "{}\n{} **BATTLE OVER** {}\n:crown: WINNER: **{}**\n:heart: `{}` HP\n\n:poop: LOSER: **{}**\n:heart: `0` HP".format(title, s, s, user.name, len(u_health), author.name)
+                    else:
+                        p = random.randint(0, 1)
+                        if p == 0:
+                            embed.description = "{}\n{} **BATTLE OVER** {}\n:crown: RANDOM WINNER: **{}**\n:heart: `0` HP\n\n:poop: LOSER: **{}**\n:heart: `0` HP".format(title, s, s, author.name, user.name)
+                        else:
+                            embed.description = "{}\n{} **BATTLE OVER** {}\n:crown: RANDOM WINNER: **{}**\n:heart: `0` HP\n\n:poop: LOSER: **{}**\n:heart: `0` HP".format(title, s, s, user.name, author.name)
+                    await client.edit_message(h, embed=embed)
+                    break
+                else:
+                    await asyncio.sleep(float(5))
+                    rounds.append("+1")
+                    u_d = random.choice(attacks)
+                    a_d = random.choice(attacks)
+                    for u in range(dmgs[u_d]):
+                        if len(a_health) != 0:
+                            a_health.remove('.')
+                    for u in range(dmgs[a_d]):
+                        if len(u_health) != 0:
+                            u_health.remove('.')
+                    embed.description = "{}\n{} **ROUND {}** {}\n:small_red_triangle_down: **{}** {}\n:arrow_right: `{}` DMG\n\n:small_red_triangle_down: **{}** {}\n:arrow_right: `{}` DMG\n{} **HEALTH** {}\n:small_red_triangle_down: **{}**\n:heart: `{}` HP\n\n:small_red_triangle_down: **{}**\n:heart: `{}` HP".format(title, s, len(rounds), s, author.name, a_d, dmgs[a_d], user.name, u_d, dmgs[u_d], s, s, author.name, len(a_health), user.name, len(u_health))
+                    await client.edit_message(h, embed=embed)
+
+# }dicklength [user]
+@client.command(pass_context=True)
+async def dicklength(ctx, user: discord.Member = None):
+    embed = discord.Embed(colour=0xffa3a3)
+    embed.set_footer(text=footer_text)
+    if len(started) == 0:
+        embed.description = "{} The bot is restarting. Please try again in a few seconds.".format(reload_e)
+        await client.say(embed=embed)
+    elif ctx.message.author.id in banned_users:
+        embed.description = "{} You are on the ban list and cannot use this bot.".format(noperms_e)
+        await client.say(embed=embed)
+    elif ctx.message.server.id in banned_servers:
+        embed.description = "{} This server is on the ban list and cannot use this bot.".format(noperms_e)
+        await client.say(embed=embed)
+    else:
+        if user == None:
+            author = ctx.message.author
+        else:
+            author = user
+        c = []
+        for i in dicks:
+            a = i.split(' | ')
+            if a[0] == author.id:
+                p = int(a[1])
+                c.append("+1")
+                break
+        if len(c) == 0:
+            p = random.randint(0, 101)
+            await client.send_message(client.get_channel(dicks_chnl), "{} | {}".format(author.id, p))
+            dicks.append("{} | {}".format(author.id, p))
+        if p <= 5:
+            embed.description = "{} I'm sorry, **{}**. Your dick ran away.".format(dicklength_e, author.name)
+            await client.say(embed=embed)
+        elif p <= 10:
+            embed.description = "{} I'm sorry, **{}**. Your dick fell off.".format(dicklength_e, author.name)
+            await client.say(embed=embed)
+        elif p >= 90:
+            embed.description = "{} **{}**'s dick is too big for me to take the length of it.".format(dicklength_e, author.name)
+            await client.say(embed=embed)
+        else:
+            embed.description = "{} **{}**'s dick is {}cm long.".format(dicklength_e, author.name, p)
+            await client.say(embed=embed)
+
+# }howgay [user]
+@client.command(pass_context=True)
+async def howgay(ctx, user: discord.Member = None):
+    embed = discord.Embed(colour=0xffa3a3)
+    embed.set_footer(text=footer_text)
+    if len(started) == 0:
+        embed.description = "{} The bot is restarting. Please try again in a few seconds.".format(reload_e)
+        await client.say(embed=embed)
+    elif ctx.message.author.id in banned_users:
+        embed.description = "{} You are on the ban list and cannot use this bot.".format(noperms_e)
+        await client.say(embed=embed)
+    elif ctx.message.server.id in banned_servers:
+        embed.description = "{} This server is on the ban list and cannot use this bot.".format(noperms_e)
+        await client.say(embed=embed)
+    else:
+        if user == None:
+            author = ctx.message.author
+        else:
+            author = user
+        c = []
+        for i in howgays:
+            a = i.split(' | ')
+            if a[0] == author.id:
+                p = int(a[1])
+                c.append("+1")
+                break
+        if len(c) == 0:
+            p = random.randint(0, 101)
+            await client.send_message(client.get_channel(gays_chnl), "{} | {}".format(author.id, p))
+            howgays.append("{} | {}".format(author.id, p))
+        if p <= 5:
+            embed.description = "{} **{}** is hella fucking gay.".format(howgay_e, author.name)
+            await client.say(embed=embed)
+        elif p <= 10:
+            embed.description = "{} **{}** is not gay at all.".format(howgay_e, author.name)
+            await client.say(embed=embed)
+        else:
+            embed.description = "{} **{}** is {}% gay.".format(howgay_e, author.name, p)
+            await client.say(embed=embed)                      
+                      
 ##################################
 client.run(os.environ['BOT_TOKEN'])
