@@ -270,5 +270,5 @@ async def on_ready():
     m += "\n{} Ping: `{}ms`".format(pingok_e, round((t2-t1)*1000))
     await client.send_message(client.get_channel(log_chnl), m)
     
-#######################
+##################################
 client.run(os.environ['BOT_TOKEN'])
