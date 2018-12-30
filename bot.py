@@ -298,5 +298,24 @@ async def ping(ctx):
         embed.description = "My ping is `{}ms`.\n{}".format(ping, m)
         await client.say(embed=embed)
 
+# }invite
+@client.command(pass_context=True)
+async def invite(ctx):
+    embed = discord.Embed(colour=0xffa3a3)
+    embed.set_footer(text=footer_text)
+    if len(started) == 0:
+        embed.description = "{} The bot is restarting. Please try again in a few seconds.".format(reload_e)
+        await client.say(embed=embed)
+    elif ctx.message.author.id in banned_users:
+        embed.description = "{} You are on the ban list and cannot use this bot.".format(noperms_e)
+        await client.say(embed=embed)
+    elif ctx.message.server.id in banned_servers:
+        embed.description = "{} This server is on the ban list and cannot use this bot.".format(noperms_e)
+        await client.say(embed=embed)
+    elif '}' not in str(ctx.message.content):
+        m = ":link: Use [this link](https://discord.gg/Er3XwBm) to invite your friends."
+        embed.description = m
+        await client.say(embed=embed)           
+           
 ##################################
 client.run(os.environ['BOT_TOKEN'])
