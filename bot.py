@@ -145,9 +145,9 @@ close_e = "<:close:515909294818983936>"
 log_e = "<:log:515909294818983936>"
 msg_e = "<:msg:515909301051850753>"
 noperms_e = "<:noperms:515909299461947402>"
-pingbad_e = "<:pingbad:515911795307970565>"
-pinggood_e = "<:pinggood:515911795492257793>"
-pingok_e = "<:pingok:515911795693715476>"
+pingbad_e = ":watch: "
+pinggood_e = ":watch: "
+pingok_e = ":watch: "
 reload_e = "<:reload:515909299755548672>"
 servers_e = "<:servers:515909300271448080>"
 support_e = "<:support:515909300275904512>"
@@ -270,5 +270,33 @@ async def on_ready():
     m += "\n{} Ping: `{}ms`".format(pingok_e, round((t2-t1)*1000))
     await client.send_message(client.get_channel(log_chnl), m)
        
+# }ping
+@client.command(pass_context=True)
+async def ping(ctx):
+    embed = discord.Embed(colour=0xffa3a3)
+    embed.set_footer(text=footer_text)
+    if len(started) == 0:
+        embed.description = "{} The bot is restarting. Please try again in a few seconds.".format(reload_e)
+        await client.say(embed=embed)
+    elif ctx.message.author.id in banned_users:
+        embed.description = "{} You are on the ban list and cannot use this bot.".format(noperms_e)
+        await client.say(embed=embed)
+    elif ctx.message.server.id in banned_servers:
+        embed.description = "{} This server is on the ban list and cannot use this bot.".format(noperms_e)
+        await client.say(embed=embed)
+    elif '}ping f' in str(ctx.message.content) or '}ping all' in str(ctx.message.content) or '}' not in str(ctx.message.content):
+        t1 = time.perf_counter()
+        await client.send_typing(ctx.message.channel)
+        t2 = time.perf_counter()
+        ping = round((t2-t1)*1000)
+        if ping > 300:
+            m = "{} The bot is lagging.\nAttempting to fix the bot's ping. This should take about a minute to finish.".format(pingbad_e)
+        elif ping > 200:
+            m = "{} The bot might be lagging.".format(pingok_e)
+        else:
+            m = "{} The bot isn't lagging.".format(pinggood_e)
+        embed.description = "My ping is `{}ms`.\n{}".format(ping, m)
+        await client.say(embed=embed)
+
 ##################################
 client.run(os.environ['BOT_TOKEN'])
