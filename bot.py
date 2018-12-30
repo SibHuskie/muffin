@@ -185,7 +185,7 @@ gift_e = "<:gift1:519849587100614658>"
 ban_e = "<:ban:519859483330215936>"
 link_e = "<:link1:520593270494199819>"
 
-started = []
+started = ["1"]
 # EVENT - TELLS YOU WHEN THE BOT TURNS ON
 @client.event
 async def on_ready():
