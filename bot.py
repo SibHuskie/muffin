@@ -101,7 +101,6 @@ responses_msgs = {"good bot" : ["C:", "yey me good botty", "I'm not your dog, hu
              "ok" : ["ok", "yes", "not ok", "k"],
              "cool" : ["cool cool", "cool indeed"],
              "spook" : ["sp00k3d"],
-             "zero" : ["zero is actually a girl", "zero should really take a shower", "zero's ass is flatter than earth", "aint zero gay?"],
              "yas" : ["fucking hell that was cringy as shit", "...", ">.>", "yass moist fam"],
              "owo" : ["OWO", "OwO", "uwu", "UwU"],
              "bitch" : ["betch", "benches be benching", "*bench*"],
@@ -270,6 +269,21 @@ async def on_ready():
     m += "\n{} Ping: `{}ms`".format(pingok_e, round((t2-t1)*1000))
     await client.send_message(client.get_channel(log_chnl), m)
        
+# CURRENCY SYSTEM / AUTO-RESPONSES
+@client.event
+async def on_message(msg):
+    if len(started) != 0:
+        if msg.channel.id not in ignored and not msg.author.bot:
+            con_messages.append(msg.author.id)
+            if msg.author.id not in balances:
+                await client.send_message(client.get_channel(balances_chnl), "{} | 0".format(msg.author.id))
+                balances.append(msg.author.id)
+            if msg.content.lower() in responses_msgs and msg.server.id not in responses_t:
+                p = random.randint(0, 1)
+                if p == 0:
+                    await client.send_message(msg.channel, random.choice(responses_msgs[msg.content.lower()]))
+    await client.process_commands(msg)
+
 # }ping
 @client.command(pass_context=True)
 async def ping(ctx):
