@@ -134,56 +134,56 @@ rates_chnl = '528844163693805568'
 staff_role = '516586573668679680'
 splitter = "**~~`====================`~~**"
 
-loading_e = "<a:loading:484705261609811979>"
-slotsgif1_e = "<a:slotsgif1:519832184039669760>"
-slotsgif2_e = "<a:slotsgif2:519832184622940160>"
-slotsgif3_e = "<a:slotsgif3:519832184383733761>"
-slotsgif4_e = "<a:slotsgif4:519832184123686922>"
-error_e = "<:error:515909294575845406>"
-bug_e = "<:bug1:515909292491014144>"
-close_e = "<:close:515909294818983936>"
-log_e = "<:log:515909294818983936>"
-msg_e = "<:msg:515909301051850753>"
-noperms_e = "<:noperms:515909299461947402>"
-pingbad_e = ":watch: "
-pinggood_e = ":watch: "
-pingok_e = ":watch: "
-reload_e = "<:reload:515909299755548672>"
-servers_e = "<:servers:515909300271448080>"
-support_e = "<:support:515909300275904512>"
-users_e = "<:users:515909300334362624>"
-worked_e = "<:worked:516244345473597470>"
-check_e = "<:check:515909294042906665>"
-interactions_e = "<:interactions:515909296043851796>"
-game_e = "<:game:515909300338556928>"
-battle_e = "<:battle:515909292403195914>"
-messages_e = "<:messages:515909299495763968>"
-bannedservers_e = "<:bannedservers:515909292101074945>"
-bannedusers_e = "<:bannedusers:515909292419973130>"
-cointoss_e = "<:cointoss:515909300393213972>"
-suicide_e = "<:suicide:515909300347207680>"
-roast_e = "<:roast:515909300330299392>"
-calculator_e = "<:calculator:515909292545802240>"
-ship_e = "<:ship1:515909300984741898>"
-kill_e = "<:kill:515909300149944321>"
-rate_e = "<:rate:515909299793428501>"
-dicklength_e = "<:dicklength:515909294546485248>"
-howgay_e = "<:howgay:515909296043589633>"
-suggestion_e = "<:suggestion:515909299914932250>"
-coins_e = "<:coins:515909294059814913>"
-divorce_e = "<:divorce:515909294080786434>"
-marriage_e = "<:marriage:515909297272651794>"
-convert_e = "<:convert:515909300330430476>"
-slots_e = "<:slots:515909300196212747>"
-on_e = "<:on1:515911795836321802>"
-off_e = "<:off:515911795454509057>"
-ignored_e = "<:ignored:515909296303767552>"
-work_e = "<:work:519837021850566667>"
-generator_e = "<:generator:519841353077751809>"
-steal_e = "<:steal:519845656928452632>"
-gift_e = "<:gift1:519849587100614658>"
-ban_e = "<:ban:519859483330215936>"
-link_e = "<:link1:520593270494199819>"
+loading_e = ":arrows_counterclockwise: "
+slotsgif1_e = ":gem: "
+slotsgif2_e = ":moneybag: "
+slotsgif3_e = ":heavy_dollar_sign: "
+slotsgif4_e = ":dollar: "
+error_e = ":x:"
+bug_e = ":bug: "
+close_e = ":heavy_multiplication_x: "
+log_e = ":newspaper2: "
+msg_e = ":bow: "
+noperms_e = ":x:"
+pingbad_e = ":beginner: "
+pinggood_e = ":beginner: "
+pingok_e = ":beginner: "
+reload_e = ":arrows_counterclockwise:"
+servers_e = ":shield: "
+support_e = ":shield: "
+users_e = ":grinning: "
+worked_e = ":black_heart:"
+check_e = ":white_check_mark: "
+interactions_e = ":tada: "
+game_e = ":video_game: "
+battle_e = ":crossed_swords: "
+messages_e = ":comet: "
+bannedservers_e = ":no_entry_sign: "
+bannedusers_e = ":no_entry: "
+cointoss_e = ":heavy_dollar_sign: "
+suicide_e = ":skull: "
+roast_e = ":fire: "
+calculator_e = ":1234: "
+ship_e = ":sparkles: "
+kill_e = ":gun: "
+rate_e = ":100: "
+dicklength_e = ":eggplant: "
+howgay_e = ":gay_pride_flag: "
+suggestion_e = ":bulb: "
+coins_e = ":gem: "
+divorce_e = ":broken_heart: "
+marriage_e = ":heart: "
+convert_e = ":recycle: "
+slots_e = ":slot_machine: "
+on_e = ":black_square_button: "
+off_e = ":black_large_square:  "
+ignored_e = ":no_entry_sign: "
+work_e = ":dollar: "
+generator_e = ":bulb: "
+steal_e = ":bust_in_silhouette: "
+gift_e = ":gift: "
+ban_e = ":wave: "
+link_e = ":link: "
 
 started = ["1"]
 # EVENT - TELLS YOU WHEN THE BOT TURNS ON
@@ -316,6 +316,48 @@ async def invite(ctx):
         m = ":link: Use [this link](https://discord.gg/Er3XwBm) to invite your friends."
         embed.description = m
         await client.say(embed=embed)           
+           
+# }serverinfo
+@client.command(pass_context=True)
+async def serverinfo(ctx):
+    embed = discord.Embed(colour=0xffa3a3)
+    embed.set_footer(text=footer_text)
+    if len(started) == 0:
+        embed.description = "{} The bot is restarting. Please try again in a few seconds.".format(reload_e)
+        await client.say(embed=embed)
+    elif ctx.message.author.id in banned_users:
+        embed.description = "{} You are on the ban list and cannot use this bot.".format(noperms_e)
+        await client.say(embed=embed)
+    elif ctx.message.server.id in banned_servers:
+        embed.description = "{} This server is on the ban list and cannot use this bot.".format(noperms_e)
+        await client.say(embed=embed)
+    elif '}' not in str(ctx.message.content):
+        embed.description = "{} Loading information...".format(loading_e)
+        h = await client.say(embed=embed)
+        m = "**ID:** `{}`".format(ctx.message.server.id)
+        m += "\n**OWNER:** `{}`".format(ctx.message.server.owner)
+        m += "\n**MEMBERS:** `{}`".format(len(ctx.message.server.members))
+        m += "\n**REGION:** `{}`".format(ctx.message.server.region)
+        m += "\n**CREATED AT:** `{}`".format(ctx.message.server.created_at)
+        embed.description = "{} **__SERVER INFORMATION:__**\n\n{}".format(servers_e, m)
+        embed.set_thumbnail(url=ctx.message.server.icon_url)
+        ts = ""
+        if ctx.message.server.id in currency_t:
+            ts += "\n{}`Currency Rewards`{}".format(coins_e, off_e)
+        else:
+            ts += "\n{}`Currency Rewards`{}".format(coins_e, on_e)
+        if ctx.message.server.id in responses_t:
+            ts += "\n{}`Auto-Responses`{}".format(messages_e, off_e)
+        else:
+            ts += "\n{}`Auto-Responses`{}".format(messages_e, on_e)
+        embed.add_field(name="{} TOGGLES:".format(bannedusers_e), value=ts, inline=True)
+        ing = ""
+        for i in ctx.message.server.channels:
+            if i.id in ignored:
+                ing += "  <#{}>".format(i.id)
+        if ing != "":
+            embed.add_field(name="{} IGNORED CHANNELS:".format(ignored_e), value=ing, inline=True)
+        await client.edit_message(h, embed=embed)           
            
 ##################################
 client.run(os.environ['BOT_TOKEN'])
