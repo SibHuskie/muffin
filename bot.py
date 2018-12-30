@@ -16,7 +16,8 @@ error_img = ':warning:'
 default_invite = 'https://discord.gg/Er3XwBm'
 limit = 10000000000000000
 version = '1.0'
- mods = ['299761993382887425']
+
+mods = ['299761993382887425']
 mods_chnl = '528843220315275284'
 banned_users = []
 banned_servers = []
